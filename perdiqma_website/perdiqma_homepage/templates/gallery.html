@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body {
+            background-color: burlywood;
+            font-size: 16px;
+            overflow-x: hidden;
+            font-family: 'Cabin', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .header-content {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+    
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+    
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+    
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+    
+        .footer-content {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    
+        .footer-nav {
+            margin-top: 10px;
+        }
+    
+        .footer-nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+    
+        .footer-nav a:hover {
+            color: #ff9800;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #151515;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .logo img {
+            height: 70px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff9800;
+        }
+
+        .cta-nav li {
+            list-style: none;
+            display: inline;
+        }
+
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background-color: #f36700;
+            color: #fff;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-button:hover {
+            background-color: #d9534f;
+        }
+
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: 40px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .mySlides {
+            display: none;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .text {
+            color: #fff;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .numbertext {
+            color: #fff;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from { opacity: .4; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 36px;
+            text-align: center;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .caption {
+            padding: 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            {% load static %} <img src="{% static 'perdiqma3.jpg' %}" alt="PERDIQMA" class="img-size">
+        </div>
+        <nav id="nav">
+            <span><a href="{% url 'index' %}">HOME</a></span>
+            <span><a href="">GALLERY</a></span>
+            <span><a href="{% url 'activitylistuser' %}">ACTIVITY LIST</a></span>
+        </nav>
+    </header>
+    <article>
+        <h1 class="black-text">PERDIQMA MEMORIES</h1>
+        <h3 class="h3-about" id="ABOUT">ABOUT</h3>
+        <h3 class="h3-about" id="ABOUT">Di sini Kami menunjukkan segala kenangan-kenangan atau program yang telah dianjurkan oleh PERDIQMA</h3>
+        <div class="gallery">
+            {% for picture in pictures %}
+            <div class="gallery-item">
+                <img src="{{ picture.image.url }}" alt="{{ picture.caption }}">
+                <div class="caption">
+                    <p>{{ picture.caption }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </article>
+    <footer>
+
+</body>
+</html>

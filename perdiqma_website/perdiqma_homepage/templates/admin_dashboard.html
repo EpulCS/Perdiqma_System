@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            background: url("{% static 'program8.jpg' %}") no-repeat;
+            background-size: cover;
+            width: 100%;
+            font-size: 16px;
+            font-family: 'Cabin', sans-serif;
+            margin: 0;
+            padding: 0;
+            
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .admin-info a {
+            padding: 8px 15px;
+            background-color: #ff9800;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .admin-info a:hover {
+            background-color: #d9534f; /* Darker shade when hovered */
+        }
+
+        .logo img {
+            height: 70px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff9800;
+        }
+
+        .container {
+            max-width: 1200px;
+            height: 360px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"],
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .main-button, .register-button, .activity-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff9800; /* Updated color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .main-button:hover, .register-button:hover, .activity-button:hover {
+            background-color: #d9534f; /* Darker shade when hovered */
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            {% load static %}<img src="{% static 'perdiqma3.jpg' %}" alt="PERDIQMA" class="img-size">
+        </div>
+        <nav>
+            <a href="{% url 'perdiqma_list' %}">PERDIQMA LIST</a>
+            <a href="{% url 'activitylistadmin' %}">ACTIVITY LIST</a>
+        </nav>
+        <div class="admin-info">
+            <span>Welcome, {{ admin_name }}</span>
+            <a href="{% url 'index' %}" class="admin-info">Logout</a>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="section">
+            <h2>Add Picture to Gallery</h2>
+            <form action="{% url 'admin_dashboard' %}" method="POST" enctype="multipart/form-data" class="form-group">
+            {% csrf_token %}
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+            <br><br>
+            <label for="caption">Caption:</label>
+            <input type="text" name="caption" id="caption" required>
+            <br><br>
+            <input type="submit" value="Add Picture" class="main-button">
+        </form>
+
+        </div>
+            <a href="{% url 'register_perd' %}" class="register-button">Register New PERDIQMA Member</a>
+            <a href="{% url 'activitylistadmin' %}" class="activity-button">Activity List</a>
+            <a href="{% url 'perdiqma_list' %}" class="register-button">Perdiqma Member List</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

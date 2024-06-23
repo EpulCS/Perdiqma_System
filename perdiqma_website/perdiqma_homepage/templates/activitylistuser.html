@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity List</title>
+    <style>
+        body {
+            background-color: burlywood;
+            font-size: 16px;
+            overflow-x: hidden;
+            font-family: 'Cabin', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            color: #151515;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #ff9800;
+        }
+
+        .activity-list-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .activity-list-container table th,
+        .activity-list-container table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .activity-list-container table th {
+            background-color: #f4f4f4;
+        }
+
+        .activity-list-container table td a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .activity-list-container table td form {
+            display: inline;
+        }
+
+        .activity-list-container table td input[type="submit"] {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .activity-list-container table td input[type="submit"]:hover {
+            background-color: #c9302c;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            {% load static %}<img src="{% static 'perdiqma3.jpg' %}" alt="PERDIQMA" class="img-size">
+        </div>
+        <nav id="nav">
+            <span><a href="{% url 'index' %}">HOME</a></span>
+            <span><a href="{% url 'gallery' %}">GALLERY</a></span>
+        </nav>
+    </header>
+    <article>
+        <div class="activity-list-container">
+            <h1>Activity List</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for activity in activities %}
+                    <tr>
+                        <td><a href="{% url 'activity_detailuser' activity.pk %}">{{ activity.title }}</a></td>
+                        <td>{{ activity.date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </article>
+    <footer>
+        <p>&copy; 2024 | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+

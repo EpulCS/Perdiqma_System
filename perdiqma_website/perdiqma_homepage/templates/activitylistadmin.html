@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity List</title>
+    <style>
+        body {
+            background-color: burlywood;
+            width: 100%;
+            font-size: 16px;
+            font-family: 'Cabin', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        .logo img {
+            height: 70px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ff9800;
+        }
+
+        .activity-list-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .activity-list-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .activity-list-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .activity-list-container table th,
+        .activity-list-container table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .activity-list-container table th {
+            background-color: #f4f4f4;
+        }
+
+        .activity-list-container table td a {
+            color: #007bff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .activity-list-container table td form {
+            display: inline;
+        }
+
+        .activity-list-container table td input[type="submit"] {
+            background-color: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .activity-list-container table td input[type="submit"]:hover {
+            background-color: #c9302c;
+        }
+
+        .main-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .main-button:hover {
+            background-color: #d9534f;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: auto;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'perdiqma3.jpg' %}" alt="PERDIQMA" class="img-size">
+        </div>
+        <nav>
+            <a href="{% url 'admin_dashboard' %}">ADMIN DASHBOARD</a>
+            <a href="{% url 'activitylistadmin' %}">ACTIVITY LIST</a>
+        </nav>
+    </header>
+    <div class="activity-list-container">
+        <h1>Activity List</h1>
+        <a href="{% url 'activity_create' %}" class="main-button">Add new activity</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activity in activities %}
+                <tr>
+                    <td><a href="{% url 'activity_detail' activity.pk %}">{{ activity.title }}</a></td>
+                    <td>{{ activity.date }}</td>
+                    <td>
+                        <a href="{% url 'activity_update' activity.pk %}">Edit</a>
+                        <a href="{% url 'activity_delete' activity.pk %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <footer>
+        <p>&copy; 2024 | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

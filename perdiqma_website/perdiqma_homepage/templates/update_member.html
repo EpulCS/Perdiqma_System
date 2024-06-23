@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Member</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: burlywood;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            width: 100%;
+            margin: auto;
+            background: #fff;
+            padding: 40px 30px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .button a {
+            display: inline-block;
+            background: #7d2ae8;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .button a:hover {
+            background: #5b13b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Member</h1>
+        <form method="post">
+            {% csrf_token %}
+            <label for="perdiqmaID">ID:</label>
+            <input type="text" id="perdiqmaID" name="perdiqmaID" value="{{ member.perdiqmaID }}" required><br><br>
+            <label for="perdiqmaname">Name:</label>
+            <input type="text" id="perdiqmaname" name="perdiqmaname" value="{{ member.perdiqmaname }}" required><br><br>
+            <label for="perdiqmaphone">Phone:</label>
+            <input type="text" id="perdiqmaphone" name="perdiqmaphone" value="{{ member.perdiqmaphone }}" required><br><br>
+            <label for="perdiqmabureau">Bureau:</label>
+            <input type="text" id="perdiqmabureau" name="perdiqmabureau" value="{{ member.perdiqmabureau }}" required><br><br>
+            <div class="button">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+        <div class="button">
+            <a href="{% url 'perdiqma_list' %}">Back to Member List</a>
+        </div>
+    </div>
+</body>
+</html>

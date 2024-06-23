@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PERDIQMA Member List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: burlywood;
+            padding: 30px;
+        }
+        .container {
+            max-width: 850px;
+            width: 100%;
+            margin: auto;
+            background: #fff;
+            padding: 40px 30px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #7d2ae8;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .button {
+            text-align: center;
+        }
+        .button a {
+            display: inline-block;
+            background: #7d2ae8;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .button a:hover {
+            background: #5b13b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PERDIQMA Member List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Bureau</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{ member.perdiqmaID }}</td>
+                    <td>{{ member.perdiqmaname }}</td>
+                    <td>{{ member.perdiqmaphone }}</td>
+                    <td>{{ member.perdiqmabureau }}</td>
+                    <td class="button">
+                        <a href="{% url 'update_member' member.perdiqmaID %}">Update</a>
+                        <a href="{% url 'delete_member' member.perdiqmaID %}">Delete</a>
+                    </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="button">
+            <a href="{% url 'register_perd' %}">Register New Member</a>
+            <a href="{% url 'admin_dashboard' %}"> Go back </a>
+        </div>
+    </div>
+</body>
+</html>
